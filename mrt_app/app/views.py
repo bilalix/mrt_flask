@@ -6,6 +6,35 @@ from . import appbuilder, db
 
 from flask_appbuilder import AppBuilder, expose, BaseView
 
+from wtforms import Form, StringField
+from wtforms.validators import DataRequired
+from flask_appbuilder.fieldwidgets import BS3TextFieldWidget
+from flask_appbuilder.forms import DynamicForm
+from flask import flash
+from flask_appbuilder import SimpleFormView
+from flask_babel import lazy_gettext as _
+
+
+class ContactUsForm(DynamicForm):
+    title = StringField('Title',
+                        description="Reason why you're contacting us!",
+                        validators=[DataRequired()], widget=BS3TextFieldWidget())
+    description = StringField('Description',
+                              description='Your message...', widget=BS3TextFieldWidget())
+
+
+class ContactUsFormView(SimpleFormView):
+    form = ContactUsForm
+    form_title = 'This is my first form view'
+    message = 'My form submitted'
+
+    def form_get(self, form):
+        form.title.data = 'This was prefilled'
+
+    def form_post(self, form):
+        # post process form
+        flash(self.message, 'info')
+
 
 class MyBooks(BaseView):
     # route_base = "/mybooks"
@@ -21,9 +50,20 @@ class MyBooks(BaseView):
     def fetch_book(self, isbn):
         return "Fetched book with isbn: " + str(isbn)
 
+    @expose('goodBye/<string:username>')
+    @has_access
+    def good_bye(self, username):
+        msg = "Good Bye " + username + " !"
+        self.update_redirect()
+        return self.render_template('good_bye.html', message=msg)
+
 
 appbuilder.add_view(MyBooks, "All My Books", category='My Books')
 appbuilder.add_link("Fetch a book", href='/mybooks/fetch_book/684531', category='My Books')
+appbuilder.add_link("Good bye", href='/mybooks/goodBye/Bilal', category='My Books')
+appbuilder.add_view(ContactUsFormView, "Contact Us", icon="far fa-question-circle", label=_('Contact Us'),
+                    category="Help", category_icon="far fa-question-circle")
+
 
 """
     Create your Model based REST API::
