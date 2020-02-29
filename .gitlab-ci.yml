@@ -16,5 +16,6 @@ flake8:
 pytest:
   stage: Test
   script:
-    - cd mrt_flask/mrt_app
+    - export PYTHONPATH="$PYTHONPATH:."
+    - python -c "import sys;print(sys.path)"
     - pytest
