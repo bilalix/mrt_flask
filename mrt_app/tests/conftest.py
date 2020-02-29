@@ -2,13 +2,8 @@ import pytest
 from flask import Flask
 from flask_appbuilder import AppBuilder
 
-from app import db
+from app import db, app
 from app.models import Publisher
-
-
-@pytest.fixture(scope='module')
-def create_db():
-    return db
 
 
 @pytest.fixture(scope='module')
