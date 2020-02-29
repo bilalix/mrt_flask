@@ -1,6 +1,8 @@
 image: "python:3.7"
 
 before_script:
+  - export PYTHONPATH="$PYTHONPATH:."
+  - python -c "import sys;print(sys.path)"
   - python --version
   - pip install -r requirements.txt
 
@@ -32,7 +34,5 @@ pylint:
 #pytest:
 #  stage: Test
 #  script:
-#    - export PYTHONPATH="$PYTHONPATH:."
-#    - python -c "import sys;print(sys.path)"
 #    - pytest
 
