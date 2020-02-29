@@ -6,6 +6,7 @@ before_script:
 
 stages:
   - Static Analysis
+  - Test
 
 flake8:
   stage: Static Analysis
