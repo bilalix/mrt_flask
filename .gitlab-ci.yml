@@ -27,8 +27,8 @@ mypy:
   - python -m mypy *.py
 
 
-pytest:
-  stage: Test
-  script:
-    - pytest
+#pytest:
+#  stage: Test
+#  script:
+#    - pytest
 
