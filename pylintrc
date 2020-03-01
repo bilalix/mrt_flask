@@ -1,0 +1,4 @@
+[MASTER]
+disable = C0301
+
+# More options: https://github.com/kubeflow/examples/blob/master/.pylintrc
