@@ -276,4 +276,11 @@ fabric.properties
 .idea/**/markdown-navigator.xml
 .idea/**/markdown-navigator/
 
+# MISC added manually
+*.pyc
+app.db
+./tmp
+./build/*
+.idea
+
 # End of https://www.gitignore.io/api/venv,react,flask,python

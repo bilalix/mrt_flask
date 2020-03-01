@@ -3,7 +3,6 @@ image: "python:3.7"
 before_script:
   - export PYTHONPATH="$PYTHONPATH:."
   - python -c "import sys;print(sys.path)"
-  - python --version
   - pip install -r requirements.txt
 
 stages:
@@ -13,13 +12,13 @@ stages:
 flake8:
   stage: Static Analysis
   script:
-  - flake8 --max-line-length=120 mrt_flask/mrt_app/*.py
+  - flake8 --max-line-length=120 mrt_flask/*.py
 
 pylint:
   stage: Static Analysis
   allow_failure: true
   script:
-  - pylint -d C0301 mrt_flask/mrt_app/*.py
+  - pylint -d C0301 mrt_flask/*.py
 
 
 # TOFIX: see why they aren't working (even locally)
