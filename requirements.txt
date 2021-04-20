@@ -35,7 +35,7 @@ packaging==20.1
 Pillow==7.0.0
 pluggy==0.13.1
 prison==0.1.2
-py==1.8.1
+py==1.10.0
 pycodestyle==2.5.0
 pyflakes==2.1.1
 PyJWT==1.7.1
